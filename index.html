@@ -278,7 +278,7 @@ S(`<h1>第二次线上团建会议</h1>
 S(`<h2>今晚流程</h2>
 <div class="timeline">
   <div class="timeline-item"><div class="timeline-icon ti-red">🔥</div><div class="timeline-body"><div class="tl-title">数字炸弹</div><div class="tl-desc">开场热场 · 10分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-orange">🍔</div><div class="timeline-body"><div class="tl-title">Emoji 猜美食</div><div class="tl-desc">谐音猜菜名 · 15分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-orange">🍔</div><div class="timeline-body"><div class="tl-title">Emoji 猜猜猜</div><div class="tl-desc">美食 · 电影 · 成语 · 15分钟</div></div></div>
   <div class="timeline-item"><div class="timeline-icon ti-blue">📢</div><div class="timeline-body"><div class="tl-title">各板块汇报</div><div class="tl-desc">学工 → 教研 → 传播 → 后勤 · 20分钟</div></div></div>
   <div class="timeline-item"><div class="timeline-icon ti-blue">🤝</div><div class="timeline-body"><div class="tl-title">协作讨论 + 问题预想</div><div class="tl-desc">跨板块协作 · 30分钟</div></div></div>
   <div class="timeline-item"><div class="timeline-icon ti-green">🎭</div><div class="timeline-body"><div class="tl-title">两真一假</div><div class="tl-desc">互相了解 · 15分钟</div></div></div>
@@ -297,12 +297,13 @@ S(`<h2>🔥 游戏规则</h2>
   <li>大家轮流猜测这个数字，每猜一次范围缩小</li>
   <li>猜到炸弹的人将受到<b>神秘惩罚</b>！</li>
 </ul></div>
-<p style="margin-top:14px;font-size:0.95rem;color:var(--text-light);">猜测顺序：芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>`);
+<p style="margin-top:14px;font-size:0.95rem;color:var(--text-light);">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>`);
 
 // 5: Number bomb interactive
 S(`<h2>🔥 数字炸弹</h2>
 <p class="subtitle">输入你的猜测（1-100）</p>
-<p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
+<p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
+<p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
 <input type="number" class="bomb-input" id="bombInput" min="1" max="100" placeholder="?" autocomplete="off">
 <button class="btn" style="margin-top:12px;" onclick="checkBomb()">确认猜测</button>
 <p class="hint-text" id="bombHint"></p>
@@ -313,8 +314,8 @@ S(`<h2>🔥 数字炸弹</h2>
 // 6: Number bomb reveal (bomb = 11)
 S(`<h2>🔥 炸弹揭晓</h2>
 <p class="subtitle">预设的炸弹数字是……</p>
-<div style="font-size:6rem;font-weight:900;color:#EF5350;margin:20px 0;" id="bombRevealNum">73</div>
-<p class="subtitle" style="margin-top:8px;">——</p>`);
+<div style="font-size:6rem;font-weight:900;color:#EF5350;margin:20px 0;" id="bombRevealNum">17</div>
+<p class="subtitle" style="margin-top:8px;">你猜对了吗？</p>`);
 
 // 7: Number bomb punishment
 S(`<h2>😈 惩罚二选一</h2>
@@ -324,9 +325,9 @@ S(`<h2>😈 惩罚二选一</h2>
 </div>`);
 
 // 8: Emoji food title
-S(`<div class="section-icon">🍔</div><h2>Emoji 猜美食</h2><p class="subtitle">谐音猜菜名</p>`);
+S(`<div class="section-icon">🍔</div><h2>Emoji 猜猜猜</h2><p class="subtitle">美食 · 电影 · 成语</p>`);
 
-// 9-38: Emoji 猜美食题目已删除（PM版仅含流程框架）
+// 9-38: Emoji 猜猜猜题目已删除（PM版仅含流程框架）
 
 // 39: Work discussion transition
 S(`<div class="section-icon">📢</div><h2>工作讨论环节</h2><p class="subtitle">学工 → 教研 → 传播 → 后勤</p>`);
@@ -442,9 +443,9 @@ S(`<h2>🖼️ 游戏规则</h2>
 // 63: Summary
 S(`<h2>📝 会议总结</h2>
 <div class="summary-grid">
-  <div class="summary-col"><h4>📋 后续任务</h4><p>——</p></div>
-  <div class="summary-col"><h4>👤 责任人</h4><p>——</p></div>
-  <div class="summary-col"><h4>📅 下次确认期限</h4><p>——</p></div>
+  <div class="summary-col"><h4>📋 后续任务</h4><p>你猜对了吗？</p></div>
+  <div class="summary-col"><h4>👤 责任人</h4><p>你猜对了吗？</p></div>
+  <div class="summary-col"><h4>📅 下次确认期限</h4><p>你猜对了吗？</p></div>
 </div>
 <p class="subtitle" style="margin-top:30px;">明确后续任务与责任人，以及下一次确认进度的期限</p>`);
 
@@ -518,9 +519,11 @@ document.addEventListener('click', e => {
 
 // ============ INTERACTIVE FEATURES ============
 
-// Number bomb
+// Number bomb — two rounds
+const BOMBS = [17, 68];
+let bombRound = 0;
+let currentBomb = BOMBS[0];
 let bombMin = 1, bombMax = 100;
-const BOMB = 73;
 let guessHistory = [];
 
 function checkBomb() {
@@ -528,15 +531,19 @@ function checkBomb() {
   const guess = parseInt(input.value);
   if (isNaN(guess) || guess < bombMin || guess > bombMax) return;
   guessHistory.push(guess);
-  if (guess === BOMB) {
+  if (guess === currentBomb) {
     document.getElementById('bombHint').textContent = '';
     document.getElementById('bombRange').textContent = '';
     document.getElementById('bombBoom').innerHTML = '<div class="boom-text">💣 BOOM！你中弹了！</div>';
     document.getElementById('bombHistory').innerHTML = '';
     input.disabled = true;
+    const rv = document.getElementById('bombRevealNum');
+    if (rv) rv.textContent = currentBomb;
+    const rr = document.getElementById('bombRevealRound');
+    if (rr) rr.textContent = bombRound + 1;
     return;
   }
-  if (guess < BOMB) {
+  if (guess < currentBomb) {
     bombMin = Math.max(bombMin, guess + 1);
     document.getElementById('bombHint').innerHTML = '<span style="color:#1565C0;">📈 比 ' + guess + ' <b>大</b>！</span>';
   } else {
@@ -552,27 +559,51 @@ function checkBomb() {
 function renderHistory() {
   const box = document.getElementById('bombHistory');
   box.innerHTML = guessHistory.map(g => {
-    const cls = g < BOMB ? 'guess-low' : 'guess-high';
-    const arrow = g < BOMB ? '↑' : '↓';
+    const cls = g < currentBomb ? 'guess-low' : 'guess-high';
+    const arrow = g < currentBomb ? '↑' : '↓';
     return '<span class="history-tag ' + cls + '">' + g + ' ' + arrow + '</span>';
   }).join('');
 }
 
-// Reset bomb state when entering slide 5
+function nextRound() {
+  if (bombRound >= 1) return;
+  bombRound = 1;
+  currentBomb = BOMBS[1];
+  bombMin = 1; bombMax = 100;
+  guessHistory = [];
+  const inp = document.getElementById('bombInput');
+  if (inp) { inp.value = ''; inp.disabled = false; inp.focus(); }
+  document.getElementById('bombHint').textContent = '';
+  document.getElementById('bombRange').textContent = '范围：1 — 100';
+  document.getElementById('bombHistory').innerHTML = '';
+  document.getElementById('bombBoom').innerHTML = '';
+  document.getElementById('roundLabel').textContent = '第2轮';
+  document.getElementById('nextRoundBtn').style.display = 'none';
+  const rv = document.getElementById('bombRevealNum');
+  if (rv) rv.textContent = '68';
+  const rr = document.getElementById('bombRevealRound');
+  if (rr) rr.textContent = '2';
+}
+
 function resetBombIfNeeded() {
-  if (currentSlide === 4) { // slide index 4 = 5th slide (0-indexed)
+  if (currentSlide === 4) {
+    bombRound = 0; currentBomb = BOMBS[0];
     bombMin = 1; bombMax = 100;
     guessHistory = [];
     const inp = document.getElementById('bombInput');
     if (inp) { inp.value = ''; inp.disabled = false; inp.focus(); }
-    const hint = document.getElementById('bombHint');
-    if (hint) hint.textContent = '';
-    const range = document.getElementById('bombRange');
-    if (range) range.textContent = '范围：1 — 100';
-    const hist = document.getElementById('bombHistory');
-    if (hist) hist.innerHTML = '';
-    const boom = document.getElementById('bombBoom');
-    if (boom) boom.innerHTML = '';
+    document.getElementById('bombHint').textContent = '';
+    document.getElementById('bombRange').textContent = '范围：1 — 100';
+    document.getElementById('bombHistory').innerHTML = '';
+    document.getElementById('bombBoom').innerHTML = '';
+    const rl = document.getElementById('roundLabel');
+    if (rl) rl.textContent = '第1轮';
+    const nb = document.getElementById('nextRoundBtn');
+    if (nb) nb.style.display = 'inline-block';
+    const rv = document.getElementById('bombRevealNum');
+    if (rv) rv.textContent = '17';
+    const rr = document.getElementById('bombRevealRound');
+    if (rr) rr.textContent = '1';
   }
 }
 

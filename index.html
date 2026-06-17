@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第二次线上团建会议（PM版）· 洞天府邸</title>
+<style>
+  :root {
+    --bg-start: #E3F2FD;
+    --bg-mid: #E8F5E9;
+    --bg-end: #F1F8E9;
+    --text: #37474F;
+    --text-light: #607D8B;
+    --accent: #42A5F5;
+    --accent2: #66BB6A;
+    --accent3: #FFA726;
+    --card-bg: #fff;
+    --card-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    --btn-border: #42A5F5;
+    --divider: #E0E0E0;
+    --danger: #EF5350;
+    --warm: #FF7043;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+    color: var(--text);
+    width: 100vw; height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .container {
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .slide {
+    display: none;
+    width: 90vw; max-width: 1000px;
+    height: 80vh; max-height: 650px;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 40px 50px;
+    animation: fadeIn 0.35s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .slide h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 10px; color: #263238; }
+  .slide h2 { font-size: 2.4rem; font-weight: 700; margin-bottom: 10px; color: #263238; }
+  .slide h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 20px; color: #37474F; }
+  .slide .subtitle { font-size: 1.15rem; color: var(--text-light); margin-bottom: 10px; }
+  .slide .meta { font-size: 0.95rem; color: var(--text-light); }
+  .badge {
+    display: inline-block; padding: 4px 14px; border-radius: 14px;
+    font-size: 0.85rem; font-weight: 600; margin: 4px;
+  }
+  .badge-blue { background: #E3F2FD; color: #1976D2; }
+  .badge-green { background: #E8F5E9; color: #388E3C; }
+  .badge-orange { background: #FFF3E0; color: #F57C00; }
+  .card {
+    background: var(--card-bg); border-radius: 14px;
+    box-shadow: var(--card-shadow); padding: 30px 38px;
+    margin: 8px 0; text-align: left; width: 100%; max-width: 800px;
+    font-size: 1.1rem;
+  }
+  .btn {
+    padding: 10px 24px; border-radius: 22px; border: 2px solid var(--btn-border);
+    background: #fff; color: var(--accent); font-size: 1rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .btn:hover { background: var(--accent); color: #fff; }
+  .btn-sm { padding: 6px 16px; font-size: 0.85rem; border-radius: 16px; }
+  /* timeline */
+  .timeline { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 600px; }
+  .timeline-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--card-bg); border-radius: 12px;
+    padding: 14px 22px; box-shadow: var(--card-shadow);
+    text-align: left;
+  }
+  .timeline-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+  .ti-blue { background: #E3F2FD; }
+  .ti-green { background: #E8F5E9; }
+  .ti-orange { background: #FFF3E0; }
+  .ti-red { background: #FFEBEE; }
+  .timeline-body .tl-title { font-weight: 600; font-size: 1.05rem; }
+  .timeline-body .tl-desc { font-size: 0.9rem; color: var(--text-light); }
+  /* section title */
+  .section-icon { font-size: 4rem; margin-bottom: 16px; }
+  /* number bomb interactive */
+  .bomb-input {
+    font-size: 1.5rem; padding: 10px 20px; border-radius: 10px;
+    border: 2px solid #E0E0E0; text-align: center; width: 140px;
+    outline: none; transition: border 0.2s;
+  }
+  .bomb-input:focus { border-color: var(--accent); }
+  .hint-text { font-size: 1.1rem; margin-top: 12px; font-weight: 600; }
+  .range-text { font-size: 0.9rem; color: var(--text-light); margin-top: 4px; }
+  .history-box {
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+    max-width: 500px; margin-top: 10px;
+  }
+  .history-tag {
+    background: #F5F5F5; padding: 4px 12px; border-radius: 12px;
+    font-size: 0.85rem; font-family: monospace;
+  }
+  .guess-low { background: #FFEBEE; color: #C62828; }
+  .guess-high { background: #E3F2FD; color: #1565C0; }
+  .boom-text { font-size: 3rem; font-weight: 900; color: #EF5350; animation: boom 0.6s ease; }
+  @keyframes boom { 0% { transform: scale(0.3); opacity: 0; } 60% { transform: scale(1.3); } 100% { transform: scale(1); opacity: 1; } }
+  /* emoji */
+  .emoji-row { font-size: 4rem; letter-spacing: 12px; margin: 20px 0; }
+  .answer-hidden {
+    font-size: 1.8rem; font-weight: 700; padding: 16px 30px;
+    background: #F5F5F5; border-radius: 12px; cursor: pointer;
+    min-width: 200px; color: #BDBDBD; transition: all 0.3s;
+  }
+  .answer-hidden:hover { background: #EEEEEE; }
+  .answer-revealed { color: var(--accent2); font-size: 1.8rem; font-weight: 700; }
+  /* work section */
+  .work-card {
+    text-align: left; width: 100%; max-width: 850px;
+    background: var(--card-bg); border-radius: 14px;
+    box-shadow: var(--card-shadow); padding: 36px 40px;
+  }
+  .work-card .core {
+    font-size: 1.15rem; font-weight: 600; color: var(--accent);
+    margin-bottom: 14px; padding: 10px 16px; background: #E3F2FD;
+    border-radius: 8px; display: inline-block;
+  }
+  .work-card .phase { margin: 12px 0; }
+  .work-card .phase-label {
+    font-weight: 700; font-size: 0.95rem; color: var(--accent3);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .work-card .phase-text { font-size: 1.05rem; color: var(--text); margin-top: 2px; }
+  .work-card .recent {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--divider);
+    font-size: 1rem; color: var(--text-light);
+  }
+  /* dynamic input */
+  .dynamic-input {
+    width: 100%; max-width: 600px; min-height: 200px;
+    border: 2px dashed #CFD8DC; border-radius: 12px;
+    padding: 16px; font-size: 1rem; font-family: inherit;
+    resize: vertical; outline: none; background: #FAFAFA;
+    color: var(--text); text-align: left;
+  }
+  .dynamic-input:focus { border-color: var(--accent); background: #fff; }
+  /* person card */
+  .person-name {
+    font-size: 1.8rem; font-weight: 700; margin-bottom: 24px;
+    color: #263238;
+  }
+  .person-statements { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .person-statements .stmt {
+    background: var(--card-bg); border-radius: 10px; padding: 18px 28px;
+    box-shadow: var(--card-shadow); font-size: 1.15rem;
+    width: 100%; max-width: 500px;
+  }
+  .stmt-num {
+    display: inline-block; width: 28px; height: 28px; line-height: 28px;
+    border-radius: 50%; background: var(--accent); color: #fff;
+    font-size: 0.8rem; font-weight: 700; margin-right: 10px;
+    text-align: center;
+  }
+  /* summary */
+  .summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px; width: 100%; max-width: 750px; margin-top: 10px;
+  }
+  .summary-col {
+    background: var(--card-bg); border-radius: 14px;
+    box-shadow: var(--card-shadow); padding: 20px;
+    text-align: center;
+  }
+  .summary-col h4 { font-size: 1.05rem; color: var(--accent); margin-bottom: 8px; }
+  .summary-col p { font-size: 0.95rem; color: var(--text-light); min-height: 40px; }
+  /* progress bar */
+  .progress-bar-wrap {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 6px; background: rgba(0,0,0,0.08);
+    border-radius: 3px; cursor: pointer; z-index: 100;
+  }
+  .progress-bar-fill {
+    height: 100%; background: var(--accent); border-radius: 3px;
+    transition: width 0.3s; width: 0%;
+  }
+  .page-indicator {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+    font-size: 0.8rem; color: var(--text-light); z-index: 100;
+  }
+  /* nav buttons */
+  .nav-btns {
+    position: fixed; bottom: 28px; right: 24px; z-index: 150;
+    display: flex; gap: 10px;
+  }
+  .nav-btn {
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 2px solid #CFD8DC; background: rgba(255,255,255,0.9);
+    font-size: 1.2rem; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    color: var(--text); transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .nav-btn:active { transform: scale(0.92); }
+  .click-hint {
+    font-size: 0.8rem; color: #BDBDBD; margin-top: 12px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+  /* rules text */
+  .rules-text { text-align: left; line-height: 2; font-size: 1.1rem; max-width: 680px; }
+  .rules-text li { margin: 6px 0; }
+  /* floating timer */
+  .timer-float {
+    position: fixed; top: 20px; right: 20px; z-index: 200;
+    background: rgba(255,255,255,0.92); border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1); padding: 10px 16px;
+    display: flex; align-items: center; gap: 10px;
+    cursor: move; user-select: none;
+  }
+  .timer-display {
+    font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums;
+    font-family: 'SF Mono','Cascadia Code','Consolas',monospace;
+    color: #263238; min-width: 70px; text-align: center;
+  }
+  .timer-btn {
+    width: 30px; height: 30px; border-radius: 50%; border: none;
+    font-size: 0.9rem; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    background: #E8F5E9; color: #388E3C;
+    transition: all 0.2s;
+  }
+  .timer-btn:hover { background: #C8E6C9; }
+  .timer-btn.reset { background: #FFEBEE; color: #C62828; }
+  .timer-btn.reset:hover { background: #FFCDD2; }
+</style>
+</head>
+<body>
+
+<div class="timer-float" id="timerFloat">
+  <button class="timer-btn" id="timerStartBtn" onclick="toggleTimer()" title="开始/暂停">▶</button>
+  <span class="timer-display" id="timerDisplay">00:00</span>
+  <button class="timer-btn reset" onclick="resetTimer()" title="归零">↺</button>
+</div>
+<div class="container" id="container"></div>
+<div class="nav-btns">
+  <button class="nav-btn" onclick="goTo(currentSlide - 1)" title="上一页">◀</button>
+  <button class="nav-btn" onclick="goTo(currentSlide + 1)" title="下一页">▶</button>
+</div>
+
+<div class="progress-bar-wrap" id="progressBarWrap">
+  <div class="progress-bar-fill" id="progressBarFill"></div>
+</div>
+<div class="page-indicator" id="pageIndicator">1 / 63</div>
+
+
+<script>
+// ============ SLIDE DATA ============
+const slides = [];
+
+function S(content) { slides.push(content); }
+
+// 1: Title
+S(`<h1>第二次线上团建会议</h1>
+<p class="subtitle">洞天府邸 · 云浮洞表</p>
+<p class="meta" style="margin-top:8px;">腾讯会议 · 19:00</p>`);
+
+// 2: Overview timeline
+S(`<h2>今晚流程</h2>
+<div class="timeline">
+  <div class="timeline-item"><div class="timeline-icon ti-red">🔥</div><div class="timeline-body"><div class="tl-title">数字炸弹</div><div class="tl-desc">开场热场 · 10分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-orange">🍔</div><div class="timeline-body"><div class="tl-title">Emoji 猜美食</div><div class="tl-desc">谐音猜菜名 · 15分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-blue">📢</div><div class="timeline-body"><div class="tl-title">各板块汇报</div><div class="tl-desc">学工 → 教研 → 传播 → 后勤 · 20分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-blue">🤝</div><div class="timeline-body"><div class="tl-title">协作讨论 + 问题预想</div><div class="tl-desc">跨板块协作 · 30分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-green">🎭</div><div class="timeline-body"><div class="tl-title">两真一假</div><div class="tl-desc">互相了解 · 15分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-orange">🍜</div><div class="timeline-body"><div class="tl-title">这是谐音梗(美食篇)</div><div class="tl-desc">递进式谐音填空 · 15分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-green">🖼️</div><div class="timeline-body"><div class="tl-title">记忆力大挑战</div><div class="tl-desc">看图抢答 · 10分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-blue">📝</div><div class="timeline-body"><div class="tl-title">总结</div><div class="tl-desc">后续任务与责任人 · 5分钟</div></div></div>
+</div>`);
+
+// 3: Number bomb title
+S(`<div class="section-icon">🔥</div><h2>数字炸弹</h2><p class="subtitle">开场热场游戏 · 10分钟</p>`);
+
+// 4: Number bomb rules
+S(`<h2>🔥 游戏规则</h2>
+<div class="card"><ul class="rules-text">
+  <li>在 <b>1~100</b> 之间，藏着一个数字炸弹</li>
+  <li>大家轮流猜测这个数字，每猜一次范围缩小</li>
+  <li>猜到炸弹的人将受到<b>神秘惩罚</b>！</li>
+</ul></div>
+<p style="margin-top:14px;font-size:0.95rem;color:var(--text-light);">猜测顺序：芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>`);
+
+// 5: Number bomb interactive
+S(`<h2>🔥 数字炸弹</h2>
+<p class="subtitle">输入你的猜测（1-100）</p>
+<p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
+<input type="number" class="bomb-input" id="bombInput" min="1" max="100" placeholder="?" autocomplete="off">
+<button class="btn" style="margin-top:12px;" onclick="checkBomb()">确认猜测</button>
+<p class="hint-text" id="bombHint"></p>
+<p class="range-text" id="bombRange">范围：1 — 100</p>
+<div class="history-box" id="bombHistory"></div>
+<div id="bombBoom" style="margin-top:10px;"></div>`);
+
+// 6: Number bomb reveal (bomb = 11)
+S(`<h2>🔥 炸弹揭晓</h2>
+<p class="subtitle">预设的炸弹数字是……</p>
+<div style="font-size:6rem;font-weight:900;color:#EF5350;margin:20px 0;" id="bombRevealNum">73</div>
+<p class="subtitle" style="margin-top:8px;">——</p>`);
+
+// 7: Number bomb punishment
+S(`<h2>😈 惩罚二选一</h2>
+<div style="display:flex;gap:30px;margin-top:20px;flex-wrap:wrap;justify-content:center;">
+  <div class="card" style="max-width:260px;text-align:center;"><div style="font-size:3rem;">🤪</div><h3>制作表情包</h3><p style="font-size:0.9rem;color:var(--text-light);">用自己的照片做个表情包发到群里</p></div>
+  <div class="card" style="max-width:260px;text-align:center;"><div style="font-size:3rem;">🥶</div><h3>讲个冷笑话</h3><p style="font-size:0.9rem;color:var(--text-light);">讲一个让大家冷到发抖的笑话</p></div>
+</div>`);
+
+// 8: Emoji food title
+S(`<div class="section-icon">🍔</div><h2>Emoji 猜美食</h2><p class="subtitle">谐音猜菜名</p>`);
+
+// 9-38: Emoji 猜美食题目已删除（PM版仅含流程框架）
+
+// 39: Work discussion transition
+S(`<div class="section-icon">📢</div><h2>工作讨论环节</h2><p class="subtitle">学工 → 教研 → 传播 → 后勤</p>`);
+
+// 40: 学工
+S(`<div class="work-card">
+<h3 style="margin-bottom:6px;">🧑‍🏫 学工板块</h3>
+<div class="core">核心：关注孩子情况，孩子与孩子间的关系，孩子与义工间的关系</div>
+<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">安排班主任工作，准备第一周的班会课，安排考勤工作，视情况可能需要准备招生方案</div></div>
+<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">进行招生、确认报名工作，保险信息、保险费收集，营员协议签订，分配辅导员</div></div>
+<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">观察收集孩子情况并作出应对（可经团队讨论后进行），安排家访工作（可在下乡前准备家访流程、话术、话题等），组织开展每周班会，观察义工与孩子关系，适时采取行动</div></div>
+<div class="recent">📌 近期可逐步开展一些可以提前准备的工作，学生工作是团队所有成员都要参与的，学工更多的是组织和推动大家进行。</div>
+</div>`);
+
+// 41: 教研
+S(`<div class="work-card">
+<h3 style="margin-bottom:6px;">📚 教研板块</h3>
+<div class="core">核心：把关教学质量，在课程设计上关注与孩子的链接，准备每周的课表设计，收集大家每周的教案，协助其它成员的备课，组织课程的试讲</div>
+<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">需要做好第一周课程准备，包括组织大家设计好自己的自主课程教案并收集。开营前组织伙伴轮流进行试讲流程（线上线下皆可）</div></div>
+<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">再次确认课表与教案是否无误，协助其他成员进行开营准备工作</div></div>
+<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">了解日常上课中是否有出现课堂问题并团队讨论解决，安排好每周课表与每周的教案统一收集，组织好每个课程的试讲和评教环节（给予当天上课队友及时反馈），合理安排教具的使用</div></div>
+</div>`);
+
+// 42: 传播
+S(`<div class="work-card">
+<h3 style="margin-bottom:6px;">📷 传播板块</h3>
+<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">撰写开营仪式主持稿，收集和组织开营节目</div></div>
+<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">组织开营节目排练</div></div>
+<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">带动团队共同拍摄照片、视频记录，收集团队的素材，撰写团队推文</div></div>
+</div>`);
+
+// 43: 后勤
+S(`<div class="work-card">
+<h3 style="margin-bottom:6px;">🔧 后勤板块</h3>
+<div class="phase"><span class="phase-label">▎1</span><div class="phase-text">收集整理团队下乡需要携带的物资清单，哪些是团队一起购买的，哪些是个人准备的，以什么方式带下乡（自带、统一携带、邮寄、当地购买等）</div></div>
+<div class="phase"><span class="phase-label">▎2</span><div class="phase-text">根据灯塔提供的物资清单，核对物资情况</div></div>
+<div class="phase"><span class="phase-label">▎3</span><div class="phase-text">视义教点情况，配合教研组的课表，安排做饭值班（是否需要做饭，是否需要出去买菜等）</div></div>
+<div class="phase"><span class="phase-label">▎4</span><div class="phase-text">安排卫生值日，包括义工住宿环境和课室环境</div></div>
+<div class="phase"><span class="phase-label">▎5</span><div class="phase-text">收集需要团队购买的物资并统一购买，记账</div></div>
+</div>`);
+
+// 44: Collaboration discussion
+S(`<h2>🤝 协作讨论</h2>
+<p class="subtitle" style="margin-top:12px;">哪些工作需要其他板块支持？具体需要对方做什么？</p>
+<div class="card" style="text-align:center;">
+  <p style="font-size:1rem;color:var(--text-light);margin:10px 0;">学工 ↔ 教研 ↔ 传播 ↔ 后勤</p>
+</div>`);
+
+// 45: Problem anticipation
+S(`<h2>🧠 问题预想与应对</h2>
+<p class="subtitle">内部问题 vs 共性问题 · 已有对策 vs 需讨论</p>
+<textarea class="dynamic-input" id="problemInput" placeholder="在这里输入想到的问题……&#10;&#10;例如：&#10;· 孩子之间发生矛盾怎么办？&#10;· 天气原因导致课程调整？"></textarea>
+<button class="btn btn-sm" style="margin-top:10px;" onclick="clearProblemInput()">清空</button>`);
+
+// 46: Two truths one lie title
+S(`<div class="section-icon">🎭</div><h2>两真一假</h2><p class="subtitle">每人3句话，2真1假，大家来猜</p>`);
+
+// 47: Two truths one lie rules
+S(`<h2>🎭 游戏规则</h2>
+<div class="card"><ul class="rules-text">
+  <li>接下来每页会出现某个小伙伴的<b>3句话</b></li>
+  <li>其中<b>2句是真的，1句是假的</b></li>
+  <li>大家来猜猜看——哪个是真？哪个是假？</li>
+</ul></div>`);
+
+// 48-58: 11 people (placeholder)
+const people = ["若水","三三","芒果","希猫","临月","67","若壹","晚星","栗子","树洞","熙梦"];
+const placeholders = [
+  ["我会弹吉他","我去过西藏","我养过两只猫"],
+  ["我跑过马拉松","我会做蛋糕","我晕船很严重"],
+  ["我大学学过编程","我能吃辣到变态级别","我养过一只仓鼠"],
+  ["我小时候住过乡下","我见过萤火虫海","我会说三种方言"],
+  ["我高中是理科生","我爬过雪山","我害怕打雷"],
+  ["我大学在北方读的","我养过一只狗","我自驾去过新疆"],
+  ["我会做手冲咖啡","我很容易迷路","我小时候掉进过河里"],
+  ["我上台从不紧张","我有囤积症","我见过下雪的沙漠"],
+  ["我驾照一次过","我对猫毛过敏","我收藏了很多冰箱贴"],
+  ["我参加过辩论赛","我怕黑不敢一个人睡","我收到过手写情书"],
+  ["我会做木工活","我方向感极好","我是被爷爷奶奶带大的"],
+];
+people.forEach((name, i) => {
+  const s = placeholders[i];
+  S(`<div class="person-name">${name}</div>
+<div class="person-statements">
+  <div class="stmt"><span class="stmt-num">1</span>${s[0]}</div>
+  <div class="stmt"><span class="stmt-num">2</span>${s[1]}</div>
+  <div class="stmt"><span class="stmt-num">3</span>${s[2]}</div>
+</div>
+<p class="click-hint">哪句是假的？</p>`);
+});
+
+// 59: 谐音梗 title
+S(`<div class="section-icon">🍜</div><h2>这是谐音梗（美食篇）</h2><p class="subtitle">递进式谐音填空</p>`);
+
+// 60: 谐音梗 rules
+S(`<h2>🍜 游戏规则</h2>
+<div class="card"><p style="font-size:1.2rem;text-align:center;">快来根据图片猜猜是什么美食吧！</p></div>
+<p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">具体题目见另一份PPT</p>`);
+
+// 61: Memory challenge title
+S(`<div class="section-icon">🖼️</div><h2>记忆力大挑战</h2><p class="subtitle">看图抢答</p>`);
+
+// 62: Memory challenge rules
+S(`<h2>🖼️ 游戏规则</h2>
+<div class="card"><ul class="rules-text">
+  <li>待会会出现一张图片</li>
+  <li><b>6秒钟</b>后图片消失</li>
+  <li>之后会出现一个关于<b>画面细节</b>的问题</li>
+  <li>请大家<b>抢答</b>，答对积 <b>1 分</b>，答错的话其他人继续抢答</li>
+</ul></div>
+<p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">具体题目见另一份PPT</p>`);
+
+// 63: Summary
+S(`<h2>📝 会议总结</h2>
+<div class="summary-grid">
+  <div class="summary-col"><h4>📋 后续任务</h4><p>——</p></div>
+  <div class="summary-col"><h4>👤 责任人</h4><p>——</p></div>
+  <div class="summary-col"><h4>📅 下次确认期限</h4><p>——</p></div>
+</div>
+<p class="subtitle" style="margin-top:30px;">明确后续任务与责任人，以及下一次确认进度的期限</p>`);
+
+// ============ RENDER & NAVIGATION ============
+let currentSlide = 0;
+const totalSlides = slides.length;
+
+function renderAll() {
+  const container = document.getElementById('container');
+  container.innerHTML = slides.map((s, i) =>
+    `<div class="slide${i === 0 ? ' active' : ''}" id="slide${i}">${s}</div>`
+  ).join('');
+}
+
+function goTo(n) {
+  if (n < 0 || n >= totalSlides) return;
+  document.getElementById('slide' + currentSlide).classList.remove('active');
+  currentSlide = n;
+  document.getElementById('slide' + currentSlide).classList.add('active');
+  updateProgress();
+  document.getElementById('pageIndicator').textContent = (currentSlide + 1) + ' / ' + totalSlides;
+}
+
+function updateProgress() {
+  const pct = ((currentSlide + 1) / totalSlides) * 100;
+  document.getElementById('progressBarFill').style.width = pct + '%';
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goTo(currentSlide + 1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goTo(currentSlide - 1); }
+});
+
+// Progress bar drag
+const pbWrap = document.getElementById('progressBarWrap');
+let dragging = false;
+pbWrap.addEventListener('mousedown', e => {
+  dragging = true;
+  jumpFromEvent(e);
+});
+document.addEventListener('mousemove', e => {
+  if (dragging) jumpFromEvent(e);
+});
+document.addEventListener('mouseup', () => { dragging = false; });
+
+// Touch support
+pbWrap.addEventListener('touchstart', e => {
+  dragging = true;
+  jumpFromEvent(e.touches[0]);
+});
+document.addEventListener('touchmove', e => {
+  if (dragging) jumpFromEvent(e.touches[0]);
+});
+document.addEventListener('touchend', () => { dragging = false; });
+
+function jumpFromEvent(e) {
+  const rect = pbWrap.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const ratio = Math.max(0, Math.min(1, x / rect.width));
+  goTo(Math.floor(ratio * (totalSlides - 1)));
+}
+
+// Click on slide to advance (for answer reveal convenience, only on non-interactive areas)
+document.addEventListener('click', e => {
+  if (e.target.closest('.answer-hidden') || e.target.closest('input') ||
+      e.target.closest('textarea') || e.target.closest('button') ||
+      e.target.closest('.progress-bar-wrap')) return;
+  // Don't auto-advance on click — only keyboard & progress bar
+});
+
+// ============ INTERACTIVE FEATURES ============
+
+// Number bomb
+let bombMin = 1, bombMax = 100;
+const BOMB = 73;
+let guessHistory = [];
+
+function checkBomb() {
+  const input = document.getElementById('bombInput');
+  const guess = parseInt(input.value);
+  if (isNaN(guess) || guess < bombMin || guess > bombMax) return;
+  guessHistory.push(guess);
+  if (guess === BOMB) {
+    document.getElementById('bombHint').textContent = '';
+    document.getElementById('bombRange').textContent = '';
+    document.getElementById('bombBoom').innerHTML = '<div class="boom-text">💣 BOOM！你中弹了！</div>';
+    document.getElementById('bombHistory').innerHTML = '';
+    input.disabled = true;
+    return;
+  }
+  if (guess < BOMB) {
+    bombMin = Math.max(bombMin, guess + 1);
+    document.getElementById('bombHint').innerHTML = '<span style="color:#1565C0;">📈 比 ' + guess + ' <b>大</b>！</span>';
+  } else {
+    bombMax = Math.min(bombMax, guess - 1);
+    document.getElementById('bombHint').innerHTML = '<span style="color:#C62828;">📉 比 ' + guess + ' <b>小</b>！</span>';
+  }
+  document.getElementById('bombRange').textContent = '范围：' + bombMin + ' — ' + bombMax;
+  renderHistory();
+  input.value = '';
+  input.focus();
+}
+
+function renderHistory() {
+  const box = document.getElementById('bombHistory');
+  box.innerHTML = guessHistory.map(g => {
+    const cls = g < BOMB ? 'guess-low' : 'guess-high';
+    const arrow = g < BOMB ? '↑' : '↓';
+    return '<span class="history-tag ' + cls + '">' + g + ' ' + arrow + '</span>';
+  }).join('');
+}
+
+// Reset bomb state when entering slide 5
+function resetBombIfNeeded() {
+  if (currentSlide === 4) { // slide index 4 = 5th slide (0-indexed)
+    bombMin = 1; bombMax = 100;
+    guessHistory = [];
+    const inp = document.getElementById('bombInput');
+    if (inp) { inp.value = ''; inp.disabled = false; inp.focus(); }
+    const hint = document.getElementById('bombHint');
+    if (hint) hint.textContent = '';
+    const range = document.getElementById('bombRange');
+    if (range) range.textContent = '范围：1 — 100';
+    const hist = document.getElementById('bombHistory');
+    if (hist) hist.innerHTML = '';
+    const boom = document.getElementById('bombBoom');
+    if (boom) boom.innerHTML = '';
+  }
+}
+
+// Reveal answer
+function revealAnswer(el, answer) {
+  el.textContent = answer;
+  el.classList.remove('answer-hidden');
+  el.classList.add('answer-revealed');
+  el.onclick = null;
+  // Show hint
+  const hintEl = el.nextElementSibling;
+  if (hintEl && hintEl.classList.contains('hint-detail')) {
+    hintEl.style.display = 'block';
+  }
+}
+
+// Clear problem input
+function clearProblemInput() {
+  document.getElementById('problemInput').value = '';
+}
+
+// Override goTo to handle special slide logic
+const originalGoTo = goTo;
+goTo = function(n) {
+  if (n < 0 || n >= totalSlides) return;
+  originalGoTo(n);
+  resetBombIfNeeded();
+};
+
+// ============ FLOATING TIMER ============
+let timerSec = 0, timerInterval = null, timerRunning = false;
+function updateTimerDisplay() {
+  const m = Math.floor(timerSec / 60);
+  const s = timerSec % 60;
+  document.getElementById('timerDisplay').textContent =
+    String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+function toggleTimer() {
+  const btn = document.getElementById('timerStartBtn');
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    btn.textContent = '▶';
+    btn.style.background = '#E8F5E9'; btn.style.color = '#388E3C';
+  } else {
+    timerInterval = setInterval(() => { timerSec++; updateTimerDisplay(); }, 1000);
+    timerRunning = true;
+    btn.textContent = '⏸';
+    btn.style.background = '#FFF3E0'; btn.style.color = '#F57C00';
+  }
+}
+function resetTimer() {
+  if (timerRunning) toggleTimer();
+  timerSec = 0;
+  updateTimerDisplay();
+}
+// Drag timer
+(function(){
+  const el = document.getElementById('timerFloat');
+  let dragging = false, ox, oy;
+  el.addEventListener('mousedown', e => {
+    if (e.target.tagName === 'BUTTON') return;
+    dragging = true;
+    ox = e.clientX - el.offsetLeft;
+    oy = e.clientY - el.offsetTop;
+    el.style.position = 'fixed';
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    el.style.left = (e.clientX - ox) + 'px';
+    el.style.top = (e.clientY - oy) + 'px';
+    el.style.right = 'auto';
+  });
+  document.addEventListener('mouseup', () => { dragging = false; });
+  // touch
+  el.addEventListener('touchstart', e => {
+    if (e.target.tagName === 'BUTTON') return;
+    dragging = true;
+    ox = e.touches[0].clientX - el.offsetLeft;
+    oy = e.touches[0].clientY - el.offsetTop;
+    el.style.position = 'fixed';
+  });
+  document.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    el.style.left = (e.touches[0].clientX - ox) + 'px';
+    el.style.top = (e.touches[0].clientY - oy) + 'px';
+    el.style.right = 'auto';
+  });
+  document.addEventListener('touchend', () => { dragging = false; });
+})();
+
+// ============ INIT ============
+renderAll();
+updateProgress();
+
+// Enter key for bomb input
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && currentSlide === 4) {
+    checkBomb();
+  }
+});
+</script>
+
+</body>
+</html>

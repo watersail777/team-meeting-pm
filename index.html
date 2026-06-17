@@ -278,7 +278,7 @@ S(`<h1>第二次线上团建会议</h1>
 S(`<h2>今晚流程</h2>
 <div class="timeline">
   <div class="timeline-item"><div class="timeline-icon ti-red">🔥</div><div class="timeline-body"><div class="tl-title">数字炸弹</div><div class="tl-desc">开场热场 · 10分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-orange">🍔</div><div class="timeline-body"><div class="tl-title">Emoji 猜猜猜</div><div class="tl-desc">美食·电影·成语 · 15分钟</div></div></div>
+  <div class="timeline-item"><div class="timeline-icon ti-orange">🍔</div><div class="timeline-body"><div class="tl-title">Emoji 猜猜猜</div><div class="tl-desc">谐音猜猜猜 · 15分钟</div></div></div>
   <div class="timeline-item"><div class="timeline-icon ti-blue">📢</div><div class="timeline-body"><div class="tl-title">各板块汇报</div><div class="tl-desc">学工 → 教研 → 传播 → 后勤 · 20分钟</div></div></div>
   <div class="timeline-item"><div class="timeline-icon ti-blue">🤝</div><div class="timeline-body"><div class="tl-title">协作讨论 + 问题预想</div><div class="tl-desc">跨板块协作 · 30分钟</div></div></div>
   <div class="timeline-item"><div class="timeline-icon ti-green">🎭</div><div class="timeline-body"><div class="tl-title">两真一假</div><div class="tl-desc">互相了解 · 15分钟</div></div></div>
@@ -305,7 +305,7 @@ S(`<h2>🔥 数字炸弹 <span style="font-size:1rem;color:var(--accent);" id="r
 <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
 <input type="number" class="bomb-input" id="bombInput" min="1" max="100" placeholder="?" autocomplete="off">
 <button class="btn" style="margin-top:12px;" onclick="checkBomb()">确认猜测</button>
-<button class="btn btn-sm" style="margin-left:8px;" onclick="nextRound()" id="nextRoundBtn">下一轮 ▶</button>
+<button class="btn btn-sm" style="margin-left:8px;" onclick="nextRound()" id="nextRoundBtn" style="display:none;">下一轮 ▶</button>
 <p class="hint-text" id="bombHint"></p>
 <p class="range-text" id="bombRange">范围：1 — 100</p>
 <div class="history-box" id="bombHistory"></div>
@@ -520,7 +520,7 @@ document.addEventListener('click', e => {
 
 // Number bomb — two rounds
 const BOMBS = [73];
-let bombRound = 0; let maxRounds = 1;
+let bombRound = 0;
 let currentBomb = BOMBS[0];
 let bombMin = 1, bombMax = 100;
 let guessHistory = [];
@@ -536,7 +536,6 @@ function checkBomb() {
     document.getElementById('bombBoom').innerHTML = '<div class="boom-text">💣 BOOM！你中弹了！</div>';
     document.getElementById('bombHistory').innerHTML = '';
     input.disabled = true;
-    // Update reveal page
     const rv = document.getElementById('bombRevealNum');
     if (rv) rv.textContent = currentBomb;
     const rr = document.getElementById('bombRevealRound');
@@ -566,7 +565,7 @@ function renderHistory() {
 }
 
 function nextRound() {
-  if (bombRound >= maxRounds - 1) return;
+  if (bombRound >= 0) return;
   bombRound = 1;
   currentBomb = BOMBS[1];
   bombMin = 1; bombMax = 100;
@@ -582,10 +581,9 @@ function nextRound() {
   const rv = document.getElementById('bombRevealNum');
   if (rv) rv.textContent = '73';
   const rr = document.getElementById('bombRevealRound');
-  if (rr) rr.textContent = '2';
+  if (rr) rr.textContent = '1';
 }
 
-// Reset bomb state when entering slide 5
 function resetBombIfNeeded() {
   if (currentSlide === 4) {
     bombRound = 0; currentBomb = BOMBS[0];

@@ -299,7 +299,7 @@ S(`<h2>🔥 游戏规则</h2>
 </ul></div>
 <p style="margin-top:14px;font-size:0.95rem;color:var(--text-light);">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>`);
 
-// 5: Number bomb interactive
+// 5: Number bomb interactive (two rounds)
 S(`<h2>🔥 数字炸弹 <span style="font-size:1rem;color:var(--accent);" id="roundLabel">第1轮</span></h2>
 <p class="subtitle">输入你的猜测（1-100）</p>
 <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
@@ -310,14 +310,14 @@ S(`<h2>🔥 数字炸弹 <span style="font-size:1rem;color:var(--accent);" id="r
 <p class="range-text" id="bombRange">范围：1 — 100</p>
 <div class="history-box" id="bombHistory"></div>
 <div id="bombBoom" style="margin-top:10px;"></div>`);
-
-// 6: Number bomb reveal (bomb = 11)
+	
+	// 6: Number bomb reveal (two rounds)
 S(`<h2>🔥 炸弹揭晓</h2>
 <p class="subtitle">第<span id="bombRevealRound">1</span>轮的炸弹数字是……</p>
 <div style="font-size:6rem;font-weight:900;color:#EF5350;margin:20px 0;" id="bombRevealNum">17</div>
 <p class="subtitle" style="margin-top:8px;" id="bombRevealMsg">你猜对了吗？</p>`);
-
-// 7: Number bomb punishment
+	
+	// 7: Number bomb punishment
 S(`<h2>😈 惩罚二选一</h2>
 <div style="display:flex;gap:30px;margin-top:20px;flex-wrap:wrap;justify-content:center;">
   <div class="card" style="max-width:260px;text-align:center;"><div style="font-size:3rem;">🤪</div><h3>制作表情包</h3><p style="font-size:0.9rem;color:var(--text-light);">用自己的照片做个表情包发到群里</p></div>

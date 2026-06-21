@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第二次线上团建会议（PM版）· 洞天府邸</title>
+<title>第二次线上团建会议 · 洞天府邸</title>
 <style>
   :root {
     --bg-start: #E3F2FD;
@@ -262,7 +262,6 @@
 </div>
 <div class="page-indicator" id="pageIndicator">1 / 63</div>
 
-
 <script>
 // ============ SLIDE DATA ============
 const slides = [];
@@ -272,62 +271,58 @@ function S(content) { slides.push(content); }
 // 1: Title
 S(`<h1>第二次线上团建会议</h1>
 <p class="subtitle">洞天府邸 · 云浮洞表</p>
-<p class="meta" style="margin-top:8px;">腾讯会议 · 19:00</p>`);
+<p class="meta" style="margin-top:8px;">腾讯会议 · 19:30</p>`);
 
 // 2: Overview timeline
-S(`<h2>今晚流程</h2>
-<div class="timeline">
-  <div class="timeline-item"><div class="timeline-icon ti-red">🔥</div><div class="timeline-body"><div class="tl-title">数字炸弹</div><div class="tl-desc">开场热场 · 10分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-orange">🍔</div><div class="timeline-body"><div class="tl-title">Emoji 猜猜猜</div><div class="tl-desc">谐音猜猜猜 · 15分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-blue">📢</div><div class="timeline-body"><div class="tl-title">各板块汇报</div><div class="tl-desc">学工 → 教研 → 传播 → 后勤 · 20分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-blue">🤝</div><div class="timeline-body"><div class="tl-title">协作讨论 + 问题预想</div><div class="tl-desc">跨板块协作 · 30分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-green">🎭</div><div class="timeline-body"><div class="tl-title">两真一假</div><div class="tl-desc">互相了解 · 15分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-orange">🍜</div><div class="timeline-body"><div class="tl-title">这是谐音梗</div><div class="tl-desc">递进式谐音填空 · 15分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-green">🖼️</div><div class="timeline-body"><div class="tl-title">记忆力大挑战</div><div class="tl-desc">看图抢答 · 10分钟</div></div></div>
-  <div class="timeline-item"><div class="timeline-icon ti-blue">📝</div><div class="timeline-body"><div class="tl-title">总结</div><div class="tl-desc">后续任务与责任人 · 5分钟</div></div></div>
-</div>`);
 
 // 3: Number bomb title
-S(`<div class="section-icon">🔥</div><h2>数字炸弹</h2><p class="subtitle">开场热场游戏 · 10分钟</p>`);
 
 // 4: Number bomb rules
-S(`<h2>🔥 游戏规则</h2>
-<div class="card"><ul class="rules-text">
-  <li>在 <b>1~100</b> 之间，藏着一个数字炸弹</li>
-  <li>大家轮流猜测这个数字，每猜一次范围缩小</li>
-  <li>猜到炸弹的人将受到<b>神秘惩罚</b>！</li>
-</ul></div>
-<p style="margin-top:14px;font-size:0.95rem;color:var(--text-light);">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>`);
 
 // 5: Number bomb interactive (two rounds)
-S(`<h2>🔥 数字炸弹 <span style="font-size:1rem;color:var(--accent);" id="roundLabel">第1轮</span></h2>
-<p class="subtitle">输入你的猜测（1-100）</p>
-<p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">猜测顺序：三三 → 芒果 → 希猫 → 临月 → 67 → 若壹 → 晚星 → 栗子 → 树洞 → 熙梦</p>
-<input type="number" class="bomb-input" id="bombInput" min="1" max="100" placeholder="?" autocomplete="off">
-<button class="btn" style="margin-top:12px;" onclick="checkBomb()">确认猜测</button>
-<button class="btn btn-sm" style="margin-left:8px;" onclick="nextRound()" id="nextRoundBtn" style="display:none;">下一轮 ▶</button>
-<p class="hint-text" id="bombHint"></p>
-<p class="range-text" id="bombRange">范围：1 — 100</p>
-<div class="history-box" id="bombHistory"></div>
-<div id="bombBoom" style="margin-top:10px;"></div>`);
+
 	
 	// 6: Number bomb reveal (two rounds)
-S(`<h2>🔥 炸弹揭晓</h2>
-<p class="subtitle">第<span id="bombRevealRound">1</span>轮的炸弹数字是……</p>
-<div style="font-size:6rem;font-weight:900;color:#EF5350;margin:20px 0;" id="bombRevealNum">17</div>
-<p class="subtitle" style="margin-top:8px;" id="bombRevealMsg">你猜对了吗？</p>`);
+
 	
 	// 7: Number bomb punishment
-S(`<h2>😈 惩罚二选一</h2>
-<div style="display:flex;gap:30px;margin-top:20px;flex-wrap:wrap;justify-content:center;">
-  <div class="card" style="max-width:260px;text-align:center;"><div style="font-size:3rem;">🤪</div><h3>制作表情包</h3><p style="font-size:0.9rem;color:var(--text-light);">用自己的照片做个表情包发到群里</p></div>
-  <div class="card" style="max-width:260px;text-align:center;"><div style="font-size:3rem;">🥶</div><h3>讲个冷笑话</h3><p style="font-size:0.9rem;color:var(--text-light);">讲一个让大家冷到发抖的笑话</p></div>
-</div>`);
 
 // 8: Emoji food title
-S(`<div class="section-icon">🍔</div><h2>Emoji 猜猜猜</h2><p class="subtitle">谐音猜猜猜</p>`);
 
-// 9-41: Emoji 猜猜猜题目已删除（PM版仅含流程框架）
+// 9-41: Emoji 猜猜猜 — 专题页+15道题
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 39: Work discussion transition
 S(`<div class="section-icon">📢</div><h2>工作讨论环节</h2><p class="subtitle">学工 → 教研 → 传播 → 后勤</p>`);
 
@@ -335,51 +330,184 @@ S(`<div class="section-icon">📢</div><h2>工作讨论环节</h2><p class="subt
 S(`<div class="work-card">
 <h3 style="margin-bottom:6px;">🧑‍🏫 学工板块</h3>
 <div class="core">核心：关注孩子情况，孩子与孩子间的关系，孩子与义工间的关系</div>
-<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">安排班主任工作，准备第一周的班会课，安排考勤工作，视情况可能需要准备招生方案</div></div>
-<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">进行招生、确认报名工作，保险信息、保险费收集，营员协议签订，分配辅导员</div></div>
-<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">观察收集孩子情况并作出应对（可经团队讨论后进行），安排家访工作（可在下乡前准备家访流程、话术、话题等），组织开展每周班会，观察义工与孩子关系，适时采取行动</div></div>
-<div class="recent">📌 近期可逐步开展一些可以提前准备的工作，学生工作是团队所有成员都要参与的，学工更多的是组织和推动大家进行。</div>
+<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">安排班主任工作，准备第一周的班会课，安排考勤工作，准备招生方案；提前准备家访流程、话术、话题；准备开营场地与首次班会（全员协助）</div></div>
+<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">进行招生、确认报名工作，保险信息+保险费收集，营员协议签订，分配辅导员</div></div>
+<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">观察收集孩子情况并作出应对；<b style="color:#C62828;">问题学生三级干预</b>：辅导员谈话→队长联系家长；安排家访；<b style="color:#C62828;">成长珠子正向激励</b>（具体行为+品质认可）；辅导员包干制，建立完整学生档案；每日考勤，意外出险对接秘书处走保险</div></div>
+<div class="phase"><span class="phase-label">▎招生分班</span><div class="phase-text">秘书处统一招生，现场确认+签协议+收集保险信息；妥善安抚未录取家长；划分大小班，建立家长群</div></div>
+<div class="recent">📌 学生工作是全员参与的，学工组负责组织和推动。家访避免与核心教学时间冲突。<b>从第一天告知孩子整体时间安排</b>，缓解结营离别情绪。</div>
 </div>`);
 
 // 41: 教研
 S(`<div class="work-card">
 <h3 style="margin-bottom:6px;">📚 教研板块</h3>
-<div class="core">核心：把关教学质量，在课程设计上关注与孩子的链接，准备每周的课表设计，收集大家每周的教案，协助其它成员的备课，组织课程的试讲</div>
-<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">需要做好第一周课程准备，包括组织大家设计好自己的自主课程教案并收集。开营前组织伙伴轮流进行试讲流程（线上线下皆可）</div></div>
-<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">再次确认课表与教案是否无误，协助其他成员进行开营准备工作</div></div>
-<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">了解日常上课中是否有出现课堂问题并团队讨论解决，安排好每周课表与每周的教案统一收集，组织好每个课程的试讲和评教环节（给予当天上课队友及时反馈），合理安排教具的使用</div></div>
+<div class="core">核心：把关教学质量，课程设计与孩子链接，每周课表设计，教案收集，协助备课，组织试讲</div>
+<div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">做好第一周课程准备，组织大家设计自主课程教案并收集；开营前组织伙伴轮流<b style="color:#C62828;">试讲（线上线下皆可）</b>；重点准备<b style="color:#C62828;">社区探索+自主课程</b>（主题课程已有现成教案）</div></div>
+<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">再次确认课表与教案无误，协助其他成员开营准备</div></div>
+<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">关注课堂问题并团队讨论解决；安排每周课表+统一收集教案；<b style="color:#C62828;">全员提前一周试讲20-30min并互评</b>；<b style="color:#C62828;">每日课程例会</b>，整理优质教案+学生作品存档；<b style="color:#C62828;">课表需与后勤协调</b>，避免冲突</div></div>
+<div class="phase"><span class="phase-label">▎课表体系</span><div class="phase-text">排四周完整课表，安排授课/助教，增设选修社团；<b>固定课程：社区探索、自主课、自然教育、绘本、性教育、美育、运动</b></div></div>
 </div>`);
 
 // 42: 传播
 S(`<div class="work-card">
 <h3 style="margin-bottom:6px;">📷 传播板块</h3>
 <div class="phase"><span class="phase-label">▎下乡前</span><div class="phase-text">撰写开营仪式主持稿，收集和组织开营节目</div></div>
-<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">组织开营节目排练</div></div>
-<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text">带动团队共同拍摄照片、视频记录，收集团队的素材，撰写团队推文</div></div>
+<div class="phase"><span class="phase-label">▎下乡后，开营前</span><div class="phase-text">组织开营节目排练；<b style="color:#C62828;">拍摄责任落实到具体小组</b>（非依赖个别传播成员）；开营仪式照片视频统一上传指定文件夹</div></div>
+<div class="phase"><span class="phase-label">▎开营后</span><div class="phase-text"><b>产出要求：每周3篇小结推文+1篇总结推文+1条完整总结视频</b>；带动团队共同拍摄；<b style="color:#C62828;">素材当天通过享图APP统一归集</b>（不等堆积）；照片/视频/文字有固定定量标准；拍摄工作量大，需其他板块协助分担</div></div>
 </div>`);
 
 // 43: 后勤
 S(`<div class="work-card">
 <h3 style="margin-bottom:6px;">🔧 后勤板块</h3>
-<div class="phase"><span class="phase-label">▎1</span><div class="phase-text">收集整理团队下乡需要携带的物资清单，哪些是团队一起购买的，哪些是个人准备的，以什么方式带下乡（自带、统一携带、邮寄、当地购买等）</div></div>
-<div class="phase"><span class="phase-label">▎2</span><div class="phase-text">根据灯塔提供的物资清单，核对物资情况</div></div>
-<div class="phase"><span class="phase-label">▎3</span><div class="phase-text">视义教点情况，配合教研组的课表，安排做饭值班（是否需要做饭，是否需要出去买菜等）</div></div>
-<div class="phase"><span class="phase-label">▎4</span><div class="phase-text">安排卫生值日，包括义工住宿环境和课室环境</div></div>
-<div class="phase"><span class="phase-label">▎5</span><div class="phase-text">收集需要团队购买的物资并统一购买，记账</div></div>
+<div class="phase"><span class="phase-label">▎物资规划</span><div class="phase-text">收集团队下乡物资清单，区分团队购买/个人准备/<b style="color:#C62828;">自带/统一携带/邮寄/当地购买</b>；核对灯塔物资清单；<b style="color:#C62828;">动态管理：根据现场灵活补充缺口</b></div></div>
+<div class="phase"><span class="phase-label">▎餐饮方案</span><div class="phase-text"><b style="color:#C62828;">因地制宜，不强制统一做饭</b>：优先订餐或雇当地阿姨，条件不允许再自己做；配合教研课表安排做饭值班</div></div>
+<div class="phase"><span class="phase-label">▎后勤公约</span><div class="phase-text"><b style="color:#C62828;">全员共同制定并签字</b>：覆盖作息、餐饮轮值、空间清洁、物资出入库、用电安全、公共财务记账；入营拍场地原貌、离营复原大扫除</div></div>
+<div class="phase"><span class="phase-label">▎水电与志愿时</span><div class="phase-text">村委1600元内水电分摊，超额团队自理；每日发放签到二维码，提醒签退（i志愿易失败）</div></div>
+<div class="phase"><span class="phase-label">▎卫生采购+关怀</span><div class="phase-text">安排卫生值日；统一采购物资并记账；提前采购下周教学材料；联动队长策划团建、生日/节日庆祝</div></div>
+<div class="recent">📌 后勤工作表必须与教研时间表协调。餐饮因地制宜：优先订餐或雇当地阿姨。</div>
 </div>`);
 
 // 44: Collaboration discussion
-S(`<h2>🤝 协作讨论</h2>
-<p class="subtitle" style="margin-top:12px;">哪些工作需要其他板块支持？具体需要对方做什么？</p>
-<div class="card" style="text-align:center;">
-  <p style="font-size:1rem;color:var(--text-light);margin:10px 0;">学工 ↔ 教研 ↔ 传播 ↔ 后勤</p>
-</div>`);
+S(`<h2>🤝 协作讨论 · 跨板块协作矩阵</h2>
+<p class="subtitle">"我能提供什么支持" × "我需要对方什么支持"（可双击编辑）</p>
+<div class="card" style="text-align:left;max-width:900px;max-height:380px;overflow:auto;">
+<table id="collabMatrix" style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+<tr style="background:#1a237e;color:#fff;position:sticky;top:0;">
+  <th style="padding:5px;">板块</th><th style="padding:5px;">队长</th><th style="padding:5px;">教研</th><th style="padding:5px;">学工</th><th style="padding:5px;">后勤</th><th style="padding:5px;">传播</th></tr>
+<tr><td style="font-weight:700;background:#E3F2FD;">队长</td>
+  <td style="background:#f5f5f5;">—</td>
+  <td contenteditable="true" style="background:#FFFDE7;">统筹各组沟通协调；协助对接当地合作方及解决突发问题</td>
+  <td contenteditable="true" style="background:#FFFDE7;"></td>
+  <td contenteditable="true" style="background:#FFFDE7;"></td>
+  <td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td style="font-weight:700;background:#E3F2FD;">教研</td>
+  <td contenteditable="true" style="background:#FFFDE7;">向队长汇报教学工作进度；请队长协助委外协调教学资源</td>
+  <td style="background:#f5f5f5;">—</td>
+  <td contenteditable="true" style="background:#FFFDE7;">帮助优化学程设计，配合学工开展个性化教学</td>
+  <td contenteditable="true" style="background:#FFFDE7;">根据后勤物资情况调整课程内容；协助完成教具相关准备工作</td>
+  <td contenteditable="true" style="background:#FFFDE7;">提供课程亮点素材，支撑传播推文内容</td></tr>
+<tr><td style="font-weight:700;background:#E3F2FD;">学工</td>
+  <td contenteditable="true" style="background:#FFFDE7;">向队长汇报人员/班主任工作进展及重点关注学生；协同队长进行家长沟通</td>
+  <td contenteditable="true" style="background:#FFFDE7;">支持进行课程安排，配合开展个性化教学</td>
+  <td style="background:#f5f5f5;">—</td>
+  <td contenteditable="true" style="background:#FFFDE7;">支持后勤保障工作；配合后勤共同关注学生生活需求</td>
+  <td contenteditable="true" style="background:#FFFDE7;">协助做好学生日常传播素材配合；家访工作前提前沟通拍摄计划</td></tr>
+<tr><td style="font-weight:700;background:#E3F2FD;">后勤</td>
+  <td contenteditable="true" style="background:#FFFDE7;">向队长提供物资清单及预算；希望队长及时反馈调整需求</td>
+  <td contenteditable="true" style="background:#FFFDE7;">支持教研组备课物资需求，协助完成课程相关后勤安排</td>
+  <td contenteditable="true" style="background:#FFFDE7;">支持学工组配合家访工作，及时关注学生生活状态</td>
+  <td style="background:#f5f5f5;">—</td>
+  <td contenteditable="true" style="background:#FFFDE7;">支持传播组设备保管和分发；配合传播做好物资清点和统一收纳</td></tr>
+<tr><td style="font-weight:700;background:#E3F2FD;">传播</td>
+  <td contenteditable="true" style="background:#FFFDE7;">根据各组工作需要，提炼传播亮点；配合各组互助协调，共同分担团队任务</td>
+  <td contenteditable="true" style="background:#FFFDE7;"></td>
+  <td contenteditable="true" style="background:#FFFDE7;"></td>
+  <td contenteditable="true" style="background:#FFFDE7;"></td>
+  <td style="background:#f5f5f5;">—</td></tr>
+</table>
+</div>
+<p style="margin-top:5px;font-size:0.8rem;color:var(--text-light);">💡 双击单元格即可编辑。讨论三步：5min自主梳理 → 15min小组共创 → 10min大厅分享。</p>`);
 
 // 45: Problem anticipation
 S(`<h2>🧠 问题预想与应对</h2>
-<p class="subtitle">内部问题 vs 共性问题 · 已有对策 vs 需讨论</p>
-<textarea class="dynamic-input" id="problemInput" placeholder="在这里输入想到的问题……&#10;&#10;例如：&#10;· 孩子之间发生矛盾怎么办？&#10;· 天气原因导致课程调整？"></textarea>
-<button class="btn btn-sm" style="margin-top:10px;" onclick="clearProblemInput()">清空</button>`);
+<p class="subtitle">已有预案写在下方，现场继续补充新问题</p>
+<textarea class="dynamic-input" id="problemInput" style="min-height:280px;">【已有预案——无需重复讨论，知悉即可】
+
+⚠️ 调皮孩子处理（三级干预）：
+① 辅导员与学生单独谈话 → ② 队长联系家长共同解决 → ③ 暂时搁置，观察后议。原则：不劝退，重在引导改善。
+
+🌧️ 天气等不可抗力：
+提前准备室内备用活动方案，灵活调整课表。
+
+😢 离别情绪应对：
+从第一天就告知孩子整体时间安排（开营/结营时间），提前沟通缓解情绪波动。
+
+📋 结营后：
+物资提前分类寄回/分发；一周内完成总结；1/3/6个月辅导员回访孩子。
+
+──────────────
+【以下为现场补充区——请继续添加】
+·
+·
+· </textarea>
+<button class="btn btn-sm" style="margin-top:10px;" onclick="clearProblemInput()">清空补充区</button>`);
+
+// ====== NEW SLIDES (after problem discussion) ======
+// 47: Diamond Model
+S(`<h2>💎 高效会议模型</h2>
+<p class="subtitle">钻石模型：发散 → 动荡 → 收敛</p>
+<div class="card" style="text-align:left;">
+  <p><b>🎯 三大核心功能：</b>集体决策 · 跨板块协作 · 提升沟通效率</p>
+  <p style="margin-top:10px;"><b>👤 三大关键角色：</b></p>
+  <ul style="padding-left:20px;line-height:2;">
+    <li><b>议题发起人</b>：提前准备资料 + 自带初步方案（不是只抛出问题）</li>
+    <li><b>记录员</b>：全程记录讨论过程和决议</li>
+    <li><b>计时员</b>：严格控制每项议题讨论时长，防止拖沓</li>
+  </ul>
+  <p style="margin-top:10px;"><b>📐 决策流程：</b>重要决策（如劝退学生）→ 无记名投票 → 沉淀一天 → 内部公布</p>
+  <p style="margin-top:6px;"><b>🚫 严禁：</b>简单否定和质疑 → 引导思考"如何改善"而非"如何惩罚"</p>
+</div>`);
+
+// 48: Pre-trip Checklist
+S(`<h2>📋 下乡前可推进事项</h2>
+<p class="subtitle">距下乡还有时间，这些可以提前做</p>
+<div class="card" style="text-align:left;max-width:750px;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <tr style="background:#E3F2FD;"><th style="padding:8px;text-align:left;">类别</th><th style="padding:8px;text-align:left;">事项</th><th style="padding:8px;text-align:left;">建议负责人</th></tr>
+    <tr><td style="padding:6px;">📚 教研</td><td style="padding:6px;">第一周课表设计 + 助教/主讲安排</td><td style="padding:6px;">教研板块</td></tr>
+    <tr style="background:#fafafa;"><td style="padding:6px;">📚 教研</td><td style="padding:6px;">自主课程教案收集 + 试讲组织</td><td style="padding:6px;">教研板块+全员</td></tr>
+    <tr><td style="padding:6px;">👥 学工</td><td style="padding:6px;">第一次班会课内容准备</td><td style="padding:6px;">学工板块</td></tr>
+    <tr style="background:#fafafa;"><td style="padding:6px;">👥 学工</td><td style="padding:6px;">家访流程、话术、话题提前准备</td><td style="padding:6px;">学工板块+全员</td></tr>
+    <tr><td style="padding:6px;">👥 学工</td><td style="padding:6px;">招生方案确认 + 保险信息收集</td><td style="padding:6px;">学工板块</td></tr>
+    <tr style="background:#fafafa;"><td style="padding:6px;">📷 传播</td><td style="padding:6px;">开营仪式主持稿撰写 + 节目收集排练</td><td style="padding:6px;">传播板块+全员</td></tr>
+    <tr><td style="padding:6px;">🔧 后勤</td><td style="padding:6px;">首周后勤排班表（做饭值班+卫生值日）</td><td style="padding:6px;">后勤板块</td></tr>
+    <tr style="background:#fafafa;"><td style="padding:6px;">🔧 后勤</td><td style="padding:6px;">物资清单核对 → 采购/邮寄/自带方案确认</td><td style="padding:6px;">后勤板块</td></tr>
+    <tr><td style="padding:6px;">👑 队长</td><td style="padding:6px;">6月底前与合作方完成对接</td><td style="padding:6px;">队长</td></tr>
+    <tr style="background:#fafafa;"><td style="padding:6px;">👑 队长</td><td style="padding:6px;">策划开营仪式方案</td><td style="padding:6px;">队长+全员</td></tr>
+  </table>
+</div>
+<p style="margin-top:10px;font-size:0.85rem;color:var(--text-light);">💡 以上均可在下乡前完成，减轻下乡后压力</p>`);
+
+// 49: Material Checklist
+S(`<h2>📦 物资清单核对</h2>
+<p class="subtitle">大家一起确认每项物资的购买方式</p>
+<div class="card" style="text-align:left;max-width:850px;max-height:400px;overflow-y:auto;">
+<table id="materialTable" style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+<tr style="background:#1a237e;color:#fff;position:sticky;top:0;"><th style="padding:6px;">序号</th><th style="padding:6px;">物品</th><th style="padding:6px;">购买方式</th><th style="padding:6px;">备注</th></tr>
+<tr><td>1</td><td>小蜜蜂（扩音器）</td><td contenteditable="true" style="background:#FFFDE7;min-width:100px;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>2</td><td>教具（笔、粉笔、黑板擦、画纸、剪刀胶水等）</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>3</td><td>花露水</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>4</td><td>锅、电饭煲</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>5</td><td>纸巾</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>6</td><td>菜刀、砧板、碗碟筷子勺子、洗洁精、洗碗布、油盐米调料</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>7</td><td>盆</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>8</td><td>桶</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>9</td><td>沐浴露、洗发水、洗衣液</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>10</td><td>毛巾</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>11</td><td>牙刷、牙膏、漱口杯</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>12</td><td>衣架</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>13</td><td>床铺</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>14</td><td>蚊帐</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>15</td><td>面包（干粮）</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>16</td><td>蚊香</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>17</td><td>防蚊液</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>18</td><td>小风扇</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>19</td><td>吹风机</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>20</td><td>被子、枕头</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>21</td><td>换洗衣物</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>22</td><td>电子设备及充电器</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>23</td><td>充电宝</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>24</td><td>水杯</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>25</td><td>水壶</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>26</td><td>插排</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>27</td><td>医用急救箱</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tr><td>28</td><td>杀虫剂</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+<tbody id="materialTbody">
+<tr><td>29</td><td>防晒用品</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td></tr>
+</tbody>
+</div>
+<button class="btn btn-sm" style="margin-top:8px;" onclick="addMaterialRow()">+ 新增物品</button>
+<p style="margin-top:6px;font-size:0.8rem;color:var(--text-light);">💡 购买方式填写：自带 / 统一购买 / 邮寄 / 当地购买。可双击单元格直接编辑。</p>`);
+// 51: Two truths one lie title
 
 // 46: Two truths one lie title
 S(`<div class="section-icon">🎭</div><h2>两真一假</h2><p class="subtitle">每人3句话，2真1假，大家来猜</p>`);
@@ -419,34 +547,22 @@ people.forEach((name, i) => {
 });
 
 // 59: 谐音梗 title
-S(`<div class="section-icon">🍜</div><h2>这是谐音梗</h2><p class="subtitle">递进式谐音填空</p>`);
 
 // 60: 谐音梗 rules
-S(`<h2>🍜 游戏规则</h2>
-<div class="card"><p style="font-size:1.2rem;text-align:center;">快来根据图片猜猜是什么美食吧！</p></div>
-<p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">具体题目见另一份PPT</p>`);
 
 // 61: Memory challenge title
-S(`<div class="section-icon">🖼️</div><h2>记忆力大挑战</h2><p class="subtitle">看图抢答</p>`);
 
 // 62: Memory challenge rules
-S(`<h2>🖼️ 游戏规则</h2>
-<div class="card"><ul class="rules-text">
-  <li>待会会出现一张图片</li>
-  <li><b>6秒钟</b>后图片消失</li>
-  <li>之后会出现一个关于<b>画面细节</b>的问题</li>
-  <li>请大家<b>抢答</b>，答对积 <b>1 分</b>，答错的话其他人继续抢答</li>
-</ul></div>
-<p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">具体题目见另一份PPT</p>`);
 
 // 63: Summary
 S(`<h2>📝 会议总结</h2>
+<p class="subtitle">下乡前最后一次线上团建 · 明确后续工作</p>
 <div class="summary-grid">
-  <div class="summary-col"><h4>📋 后续任务</h4><p>——</p></div>
-  <div class="summary-col"><h4>👤 责任人</h4><p>——</p></div>
-  <div class="summary-col"><h4>📅 下次确认期限</h4><p>——</p></div>
+  <div class="summary-col"><h4>📋 后续任务</h4><p style="text-align:left;font-size:0.85rem;">· 各板块内部讨论+梳理<br>· 6月底前队长对接合作方<br>· 策划开营仪式<br>· 首周课表+后勤排班<br>· 物资采购方案确认</p></div>
+  <div class="summary-col"><h4>👤 责任人</h4><p style="text-align:left;font-size:0.85rem;">· 各板块负责人<br>· 队长<br>· 全员参与</p></div>
+  <div class="summary-col"><h4>📅 时间节点</h4><p style="text-align:left;font-size:0.85rem;">· 本周内：板块内部讨论<br>· 6月底：合作方对接<br>· 三天线下集训前：物资确认</p></div>
 </div>
-<p class="subtitle" style="margin-top:30px;">明确后续任务与责任人，以及下一次确认进度的期限</p>`);
+<p class="subtitle" style="margin-top:20px;">💪 下乡倒计时，大家一起加油！</p>`);
 
 // ============ RENDER & NAVIGATION ============
 let currentSlide = 0;
@@ -518,8 +634,7 @@ document.addEventListener('click', e => {
 
 // ============ INTERACTIVE FEATURES ============
 
-// Number bomb — two rounds
-const BOMBS = [73];
+const BOMBS = [17, 68];
 let bombRound = 0;
 let currentBomb = BOMBS[0];
 let bombMin = 1, bombMax = 100;
@@ -565,7 +680,7 @@ function renderHistory() {
 }
 
 function nextRound() {
-  if (bombRound >= 0) return;
+  if (bombRound >= 1) return;
   bombRound = 1;
   currentBomb = BOMBS[1];
   bombMin = 1; bombMax = 100;
@@ -579,9 +694,9 @@ function nextRound() {
   document.getElementById('roundLabel').textContent = '第2轮';
   document.getElementById('nextRoundBtn').style.display = 'none';
   const rv = document.getElementById('bombRevealNum');
-  if (rv) rv.textContent = '73';
+  if (rv) rv.textContent = '68';
   const rr = document.getElementById('bombRevealRound');
-  if (rr) rr.textContent = '1';
+  if (rr) rr.textContent = '2';
 }
 
 function resetBombIfNeeded() {
@@ -600,7 +715,7 @@ function resetBombIfNeeded() {
     const nb = document.getElementById('nextRoundBtn');
     if (nb) nb.style.display = 'inline-block';
     const rv = document.getElementById('bombRevealNum');
-    if (rv) rv.textContent = '73';
+    if (rv) rv.textContent = '17';
     const rr = document.getElementById('bombRevealRound');
     if (rr) rr.textContent = '1';
   }
@@ -622,6 +737,15 @@ function revealAnswer(el, answer) {
 // Clear problem input
 function clearProblemInput() {
   document.getElementById('problemInput').value = '';
+}
+function addMaterialRow(){
+  const tbody = document.getElementById('materialTbody');
+  if (!tbody) return;
+  const rows = tbody.querySelectorAll('tr');
+  const nextNum = rows.length + 1;
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td>'+nextNum+'</td><td contenteditable="true" style="background:#FFFDE7;">（新物品）</td><td contenteditable="true" style="background:#FFFDE7;"></td><td contenteditable="true" style="background:#FFFDE7;"></td>';
+  tbody.appendChild(tr);
 }
 
 // Override goTo to handle special slide logic
